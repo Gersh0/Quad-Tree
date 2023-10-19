@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="ventanaAnchorPane" maxHeight="400.0" maxWidth="600.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@Intro.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControlIntro">
+	<children>
+      <Line fx:id="line1" endX="693.0" layoutX="107.0" layoutY="300.0" startX="-107.0" />
+      <Line fx:id="line2" endX="23.5" endY="504.0" layoutX="376.0" layoutY="96.0" startX="23.5" startY="-96.0" />
+      <Pane fx:id="panel1" prefHeight="300.0" prefWidth="400.0" stylesheets="@Intro.css">
+         <children>
+      		<Text fill="#63a69f" layoutX="100.0" layoutY="169.0">
+      			<font>
+      				<Font size="48.0" />
+      			</font>
+      			Quadtree
+      		</Text>
+         </children>
+      </Pane>
+      <Pane fx:id="panel4" layoutX="400.0" layoutY="300.0" prefHeight="300.0" prefWidth="400.0" stylesheets="@Intro.css">
+         <children>
+      		<Button fx:id="iniciarButton" layoutX="153.0" layoutY="118.0" mnemonicParsing="false" onAction="#IntroToMain" prefHeight="64.0" prefWidth="94.0" styleClass="button" stylesheets="@Intro.css" text="Iniciar" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+         </children>
+      </Pane>
+      <Pane fx:id="panel2" layoutX="400.0" prefHeight="300.0" prefWidth="400.0">
+         <children>
+            <Rectangle fx:id="cuadrado3" fill="#a2c7e2" height="150.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+            <Rectangle fx:id="cuadrado1" fill="#63a69f" height="150.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+            <Rectangle fx:id="cuadrado4" fill="#ffc6d9" height="150.0" layoutX="200.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+            <Rectangle fx:id="cuadrado2_1" fill="PALEGREEN" height="75.0" layoutX="200.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+            <Rectangle fx:id="cuadrado2_3" fill="BEIGE" height="75.0" layoutX="200.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+            <Rectangle fx:id="cuadrado2_2" fill="PEACHPUFF" height="75.0" layoutX="300.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+            <Rectangle fx:id="cuadrado2_4" fill="MEDIUMVIOLETRED" height="75.0" layoutX="300.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="100.0" />
+         </children></Pane>
+      <Pane fx:id="panel3" layoutY="300.0" prefHeight="300.0" prefWidth="400.0" stylesheets="@Intro.css">
+         <children>
+            <VBox fx:id="nombreVBox" alignment="CENTER" layoutX="130.0" layoutY="26.0" prefHeight="249.0" prefWidth="141.0" stylesheets="@Intro.css">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="German">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tomas Quevedo">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Daniel Pineda">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Daniel Diaz">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Santiago Zuluaga">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Alejandro Gomez">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </children></Pane>
+	</children>
+</AnchorPane>

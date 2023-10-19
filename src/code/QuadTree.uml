@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_Oz1vMG3uEe6d2KCqV1voeQ" name="QuadTree">
+    <eAnnotations xmi:id="_TWgpIG3uEe6d2KCqV1voeQ" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_TWh3QG3uEe6d2KCqV1voeQ" source="codegen">
+        <details xmi:id="_TWh3QW3uEe6d2KCqV1voeQ" key="codegenDirectory" value="/QuadTree/src"/>
+        <details xmi:id="_V7DpgG3uEe6d2KCqV1voeQ" key="AssociatedSourceCode" value="/QuadTree/src/code/Main.java;1742603400/1;/QuadTree/src/code/NodoQ.java;3362100203/1;/QuadTree/src/code/QuadTree.java;2466009406/1;"/>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:id="_T5D8kG3uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_T5EjoG3uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_T5EjoW3uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_T5Ejom3uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_T5FKsG3uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_T5FKsW3uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_T5FKsm3uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_T5FKs23uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_T5GY0G3uEe6d2KCqV1voeQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_T5NtkG3uEe6d2KCqV1voeQ" name="org">
+      <packagedElement xmi:type="uml:Package" xmi:id="_T5OUoG3uEe6d2KCqV1voeQ" name="opencv">
+        <packagedElement xmi:type="uml:Package" xmi:id="_T5O7sG3uEe6d2KCqV1voeQ" name="core">
+          <packagedElement xmi:type="uml:Class" xmi:id="_T-J38G3uEe6d2KCqV1voeQ" name="Core"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_T-RMsG3uEe6d2KCqV1voeQ" name="Mat"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="_UAGYsG3uEe6d2KCqV1voeQ" name="Size"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_T5PiwG3uEe6d2KCqV1voeQ" name="imgcodecs">
+          <packagedElement xmi:type="uml:Class" xmi:id="_T-To8G3uEe6d2KCqV1voeQ" name="Imgcodecs"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_T5QJ0G3uEe6d2KCqV1voeQ" name="imgproc">
+          <packagedElement xmi:type="uml:Class" xmi:id="_T-hrYW3uEe6d2KCqV1voeQ" name="Imgproc"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_T5YssG3uEe6d2KCqV1voeQ" name="code">
+      <packagedElement xmi:type="uml:Class" xmi:id="_T69aAG3uEe6d2KCqV1voeQ" name="Main">
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBKvsG3uEe6d2KCqV1voeQ" name="main" specification="_T7K1YG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBKvsW3uEe6d2KCqV1voeQ" name="args">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UBKvsm3uEe6d2KCqV1voeQ" value="*"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>QuadTree arbol = new QuadTree(new NodoQ());&#xD;
+		QuadTree arbol2 = new QuadTree(new NodoQ());&#xD;
+		&#xD;
+		// Load the image file&#xD;
+     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);&#xD;
+     Mat image = Imgcodecs.imread(&quot;128x128.png&quot;);&#xD;
+     // Convert the image to grayscale&#xD;
+     Mat grayImage = new Mat();&#xD;
+     Imgproc.cvtColor(image, grayImage, Imgproc.COLOR_BGR2GRAY);&#xD;
+     &#xD;
+     arbol.generarArbol(grayImage);&#xD;
+     &#xD;
+     Mat imagenReconstruida = arbol.reconstruirImagen();&#xD;
+     &#xD;
+     Mat image2 = Imgcodecs.imread(&quot;Monday2.png&quot;);&#xD;
+     // Convert the image to grayscale&#xD;
+     Mat grayImage2 = new Mat();&#xD;
+     Imgproc.cvtColor(image2, grayImage2, Imgproc.COLOR_BGR2GRAY);&#xD;
+     &#xD;
+     arbol2.generarArbol(grayImage2);&#xD;
+     &#xD;
+     Mat imagenReconstruida2 = arbol2.reconstruirImagen();&#xD;
+     &#xD;
+     &#xD;
+     //Imgcodecs.imwrite(&quot;C:\\Users\\juliana salazar\\eclipse-workspace\\QuadTree\\Pruebas\\Monday.png&quot;, imagenReconstruida);&#xD;
+     Imgcodecs.imwrite(&quot;C:\\Users\\juliana salazar\\eclipse-workspace\\QuadTree\\Pruebas\\128x128.png&quot;, imagenReconstruida);&#xD;
+     Imgcodecs.imwrite(&quot;C:\\Users\\juliana salazar\\eclipse-workspace\\QuadTree\\Pruebas\\Monday2.png&quot;, imagenReconstruida2);&#xD;
+     //Imgcodecs.imwrite(&quot;C:\\Users\\juliana salazar\\eclipse-workspace\\QuadTree\\Pruebas\\testPattern.png&quot;, imagenReconstruida);&#xD;
+&#xD;
+     &#xD;
+	</body>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_T7K1YG3uEe6d2KCqV1voeQ" name="main" isStatic="true" method="_UBKvsG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T7LccG3uEe6d2KCqV1voeQ" name="args">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_T7QU8G3uEe6d2KCqV1voeQ" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_T7RjEG3uEe6d2KCqV1voeQ" name="NodoQ">
+        <ownedAttribute xmi:id="_UAs1oG3uEe6d2KCqV1voeQ" name="llave" visibility="protected" type="_T-RMsG3uEe6d2KCqV1voeQ" association="_UCEuoG3uEe6d2KCqV1voeQ"/>
+        <ownedAttribute xmi:id="_UAxuIG3uEe6d2KCqV1voeQ" name="hijoNE" visibility="protected" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCHK4G3uEe6d2KCqV1voeQ"/>
+        <ownedAttribute xmi:id="_UA0KYG3uEe6d2KCqV1voeQ" name="hijoNW" visibility="protected" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCNRgG3uEe6d2KCqV1voeQ"/>
+        <ownedAttribute xmi:id="_UA1_kG3uEe6d2KCqV1voeQ" name="hijoSW" visibility="protected" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCPtwG3uEe6d2KCqV1voeQ"/>
+        <ownedAttribute xmi:id="_UA4b0G3uEe6d2KCqV1voeQ" name="hijoSE" visibility="protected" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCRi8G3uEe6d2KCqV1voeQ"/>
+        <ownedAttribute xmi:id="_UA6RAG3uEe6d2KCqV1voeQ" name="padre" visibility="protected" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCT_MG3uEe6d2KCqV1voeQ"/>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBaAQG3uEe6d2KCqV1voeQ" name="NodoQ" specification="_T_1S8G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBaAQW3uEe6d2KCqV1voeQ" name="llave" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBaAQm3uEe6d2KCqV1voeQ" name="padre" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBaAQ23uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>this.llave=llave;&#xD;
+		this.padre=padre;&#xD;
+		hijoNW=null;&#xD;
+		hijoNE=null;&#xD;
+		hijoSW=null;&#xD;
+		hijoSE=null;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBbOYG3uEe6d2KCqV1voeQ" name="NodoQ" specification="_T7bUEG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBbOYW3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>this.padre = null;&#xD;
+		this.llave = null;&#xD;
+		hijoNW=null;&#xD;
+		hijoNE=null;&#xD;
+		hijoSW=null;&#xD;
+		hijoSE=null;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBdDkG3uEe6d2KCqV1voeQ" name="NodoQ" specification="_T_6LcG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBdDkW3uEe6d2KCqV1voeQ" name="llave" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBdDkm3uEe6d2KCqV1voeQ" name="hijoNE" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBdDk23uEe6d2KCqV1voeQ" name="hijoNW" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBdDlG3uEe6d2KCqV1voeQ" name="hijoSW" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBdDlW3uEe6d2KCqV1voeQ" name="hijoSE" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBdDlm3uEe6d2KCqV1voeQ" name="padre" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBdDl23uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>super();&#xD;
+		this.llave = llave;&#xD;
+		this.hijoNE = hijoNE;&#xD;
+		this.hijoNW = hijoNW;&#xD;
+		this.hijoSW = hijoSW;&#xD;
+		this.hijoSE = hijoSE;&#xD;
+		this.padre = padre;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBdqoG3uEe6d2KCqV1voeQ" name="getPadre" specification="_T7io0G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBdqoW3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>return padre;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBeRsG3uEe6d2KCqV1voeQ" name="setPadre" specification="_T-qOQG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBeRsW3uEe6d2KCqV1voeQ" name="padre" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>this.padre = padre;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBeRsm3uEe6d2KCqV1voeQ" name="getHijoNE" specification="_T7lFEG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBe4wG3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>return hijoNE;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBe4wW3uEe6d2KCqV1voeQ" name="setHijoNE" specification="_T-sDcG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBe4wm3uEe6d2KCqV1voeQ" name="hijoNE" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>if(this.llave != null) {&#xD;
+			this.llave = null;&#xD;
+		}&#xD;
+		this.hijoNE = hijoNE;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBff0G3uEe6d2KCqV1voeQ" name="getHijoNW" specification="_T7nhUG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBff0W3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>return hijoNW;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBff0m3uEe6d2KCqV1voeQ" name="setHijoNW" specification="_T-t4oG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBff023uEe6d2KCqV1voeQ" name="hijoNW" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>if(this.llave != null) {&#xD;
+			this.llave = null;&#xD;
+		}&#xD;
+		this.hijoNW = hijoNW;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBgG4G3uEe6d2KCqV1voeQ" name="getHijoSW" specification="_T7pWgG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBgG4W3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>return hijoSW;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBgt8G3uEe6d2KCqV1voeQ" name="setHijoSW" specification="_T-wU4G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBgt8W3uEe6d2KCqV1voeQ" name="hijoSW" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>if(this.llave != null) {&#xD;
+			this.llave = null;&#xD;
+		}&#xD;
+		this.hijoSW = hijoSW;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBhVAG3uEe6d2KCqV1voeQ" name="getHijoSE" specification="_T7rLsG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBhVAW3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>return hijoSE;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBhVAm3uEe6d2KCqV1voeQ" name="setHijoSE" specification="_T-yxIG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBhVA23uEe6d2KCqV1voeQ" name="hijoSE" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>if(this.llave != null) {&#xD;
+			this.llave = null;&#xD;
+		}&#xD;
+		this.hijoSE = hijoSE;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBijIG3uEe6d2KCqV1voeQ" name="getLlave" specification="_T7tA4G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBijIW3uEe6d2KCqV1voeQ" type="_T-RMsG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>return llave;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBjKMG3uEe6d2KCqV1voeQ" name="setLlave" specification="_T__rAG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBjKMW3uEe6d2KCqV1voeQ" name="llave" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>this.llave = llave;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBk_YG3uEe6d2KCqV1voeQ" name="hasHijos" specification="_T7u2EG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBk_YW3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>return (this.hijoNE != null &amp;&amp; this.hijoNW != null &amp;&amp; this.hijoSE != null &amp;&amp; this.hijoSW != null);&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_T7bUEG3uEe6d2KCqV1voeQ" name="NodoQ" method="_UBbOYG3uEe6d2KCqV1voeQ">
+          <eAnnotations xmi:id="_T7ciMG3uEe6d2KCqV1voeQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_T7ciMW3uEe6d2KCqV1voeQ" key="create"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_T7dJQG3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T7io0G3uEe6d2KCqV1voeQ" name="getPadre" method="_UBdqoG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-pnMG3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T7lFEG3uEe6d2KCqV1voeQ" name="getHijoNE" method="_UBeRsm3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-rcYG3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T7nhUG3uEe6d2KCqV1voeQ" name="getHijoNW" method="_UBff0G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-tRkG3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T7pWgG3uEe6d2KCqV1voeQ" name="getHijoSW" method="_UBgG4G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-vt0G3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T7rLsG3uEe6d2KCqV1voeQ" name="getHijoSE" method="_UBhVAG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-yKEG3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T7tA4G3uEe6d2KCqV1voeQ" name="getLlave" method="_UBijIG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T_-c4G3uEe6d2KCqV1voeQ" type="_T-RMsG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T7u2EG3uEe6d2KCqV1voeQ" name="hasHijos" method="_UBk_YG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T7vdIG3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T-qOQG3uEe6d2KCqV1voeQ" name="setPadre" method="_UBeRsG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-qOQW3uEe6d2KCqV1voeQ" name="padre" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T-sDcG3uEe6d2KCqV1voeQ" name="setHijoNE" method="_UBe4wW3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-sDcW3uEe6d2KCqV1voeQ" name="hijoNE" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T-t4oG3uEe6d2KCqV1voeQ" name="setHijoNW" method="_UBff0m3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-ufsG3uEe6d2KCqV1voeQ" name="hijoNW" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T-wU4G3uEe6d2KCqV1voeQ" name="setHijoSW" method="_UBgt8G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-w78G3uEe6d2KCqV1voeQ" name="hijoSW" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T-yxIG3uEe6d2KCqV1voeQ" name="setHijoSE" method="_UBhVAm3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T-zYMG3uEe6d2KCqV1voeQ" name="hijoSE" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T_1S8G3uEe6d2KCqV1voeQ" name="NodoQ" method="_UBaAQG3uEe6d2KCqV1voeQ">
+          <eAnnotations xmi:id="_T_2hEG3uEe6d2KCqV1voeQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_T_2hEW3uEe6d2KCqV1voeQ" key="create"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_T_16AG3uEe6d2KCqV1voeQ" name="llave" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_16AW3uEe6d2KCqV1voeQ" name="padre" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_2hEm3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T_6LcG3uEe6d2KCqV1voeQ" name="NodoQ" method="_UBdDkG3uEe6d2KCqV1voeQ">
+          <eAnnotations xmi:id="_T_8AoG3uEe6d2KCqV1voeQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_T_8AoW3uEe6d2KCqV1voeQ" key="create"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_T_6ygG3uEe6d2KCqV1voeQ" name="llave" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_6ygW3uEe6d2KCqV1voeQ" name="hijoNE" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_7ZkG3uEe6d2KCqV1voeQ" name="hijoNW" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_7ZkW3uEe6d2KCqV1voeQ" name="hijoSW" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_7Zkm3uEe6d2KCqV1voeQ" name="hijoSE" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_7Zk23uEe6d2KCqV1voeQ" name="padre" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_8Aom3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T__rAG3uEe6d2KCqV1voeQ" name="setLlave" method="_UBjKMG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T__rAW3uEe6d2KCqV1voeQ" name="llave" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_T8GCcG3uEe6d2KCqV1voeQ" name="QuadTree">
+        <ownedAttribute xmi:id="_UA_JgG3uEe6d2KCqV1voeQ" name="depth" visibility="protected">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_UBAXoG3uEe6d2KCqV1voeQ" name="raiz" visibility="protected" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCXCgW3uEe6d2KCqV1voeQ"/>
+        <ownedAttribute xmi:id="_UBCM0G3uEe6d2KCqV1voeQ" name="imageSize" visibility="protected" type="_UAGYsG3uEe6d2KCqV1voeQ" association="_UCZewG3uEe6d2KCqV1voeQ"/>
+        <ownedAttribute xmi:id="_UBECAG3uEe6d2KCqV1voeQ" name="imageType" visibility="protected">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBmNgG3uEe6d2KCqV1voeQ" name="QuadTree" specification="_T_X_8G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBmNgW3uEe6d2KCqV1voeQ" name="r" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBmNgm3uEe6d2KCqV1voeQ" type="_T8GCcG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>this.raiz = r;&#xD;
+		/*this.depth = depth;*/&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBm0kG3uEe6d2KCqV1voeQ" name="getRaiz" specification="_T8LiAG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBm0kW3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>return raiz;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBnboG3uEe6d2KCqV1voeQ" name="canDivideNE" specification="_UALRMG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBnboW3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBnbom3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>if(image.cols() &lt;= 1 || image.rows() &lt;= 1) {return false;}&#xD;
+		boolean changeFound = false; &#xD;
+		int tempRow = 0;&#xD;
+		double[] tempColor = image.get(0,0);&#xD;
+		while(++tempRow &lt;= (image.rows()/2) &amp;&amp; !changeFound) {&#xD;
+			int tempCol = image.cols()/2+1;&#xD;
+			while(++tempCol &lt;= image.cols() &amp;&amp; !changeFound  &amp;&amp; image.get(tempRow, tempCol)!=null) {&#xD;
+				if(tempColor[0] != image.get(tempRow, tempCol)[0]) changeFound = true;&#xD;
+			}&#xD;
+		}&#xD;
+		return changeFound;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBoCsG3uEe6d2KCqV1voeQ" name="canDivideNW" specification="_UANtcG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBoCsW3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBoCsm3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>if(image.cols() &lt;= 1 || image.rows() &lt;= 1) {return false;}&#xD;
+		boolean changeFound = false;&#xD;
+		int tempRow = 0;&#xD;
+		double[] tempColor = image.get(0,0);&#xD;
+		while(++tempRow &lt;= (image.rows()/2) &amp;&amp; !changeFound) {&#xD;
+			int tempCol=0;&#xD;
+			while(++tempCol &lt;= (image.cols()/2) &amp;&amp; !changeFound  &amp;&amp; image.get(tempRow, tempCol)!=null) {&#xD;
+				if(tempColor[0] != image.get(tempRow, tempCol)[0]) changeFound = true;&#xD;
+			}&#xD;
+		}&#xD;
+		return changeFound;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBoCs23uEe6d2KCqV1voeQ" name="canDivideSW" specification="_UAPioG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBoCtG3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBoCtW3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>if(image.cols() &lt;= 1 || image.rows() &lt;= 1) {return false;}&#xD;
+		boolean changeFound = false;&#xD;
+		int tempRow = image.rows()/2+1;&#xD;
+		double[] tempColor = image.get(0,0);&#xD;
+		while(++tempRow &lt;= image.rows() &amp;&amp; !changeFound) {&#xD;
+			int tempCol=0;&#xD;
+			while(++tempCol &lt;= (image.cols()/2) &amp;&amp; !changeFound  &amp;&amp; image.get(tempRow, tempCol)!=null) {&#xD;
+				if(tempColor[0] != image.get(tempRow, tempCol)[0]) changeFound = true;&#xD;
+			}&#xD;
+		}&#xD;
+		return changeFound;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBopwG3uEe6d2KCqV1voeQ" name="canDivideSE" specification="_UATNAG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBopwW3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBopwm3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>if(image.cols() &lt;= 1 || image.rows() &lt;= 1) {return false;}&#xD;
+		boolean changeFound = false;&#xD;
+		int tempRow = image.rows()/2+1;&#xD;
+		double[] tempColor = image.get(0,0);&#xD;
+		while(++tempRow &lt;= image.rows() &amp;&amp; !changeFound) {&#xD;
+			int tempCol=image.cols()/2+1;&#xD;
+			while(++tempCol &lt;= image.cols() &amp;&amp; !changeFound &amp;&amp; image.get(tempRow, tempCol)!=null) {&#xD;
+				if(tempColor[0] != image.get(tempRow, tempCol)[0]) changeFound = true;&#xD;
+			}&#xD;
+		}&#xD;
+		return changeFound;&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBpQ0G3uEe6d2KCqV1voeQ" name="generarArbol" specification="_UAVpQG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBpQ0W3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>//Se comprueba si la imagen ya está en ancho o alto de 4^n&#xD;
+		&#xD;
+		&#xD;
+		&#xD;
+		&#xD;
+		this.imageType = image.type();&#xD;
+		this.imageSize = image.size();&#xD;
+		generarArbol(image, this.raiz/*, 0*/);&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBp34G3uEe6d2KCqV1voeQ" name="generarArbol" specification="_UAXecG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBp34W3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBp34m3uEe6d2KCqV1voeQ" name="nodoActual" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>boolean canDivideNE = canDivideNE(image);&#xD;
+			boolean canDivideNW = canDivideNW(image);&#xD;
+			boolean canDivideSW = canDivideSW(image);&#xD;
+			boolean canDivideSE = canDivideSE(image);&#xD;
+			if(!canDivideNE &amp;&amp; !canDivideNW &amp;&amp; !canDivideSE &amp;&amp; !canDivideSW) {&#xD;
+				return;&#xD;
+			} else {&#xD;
+				Mat NW = new Mat(image, new Range(0, image.rows()/2), new Range(0, image.cols()/2));&#xD;
+				Mat NE = new Mat(image, new Range(0, image.rows()/2), new Range(image.cols()/2+1, image.cols()));&#xD;
+				Mat SW = new Mat(image, new Range(image.rows()/2+1, image.rows()), new Range(0, image.cols()/2));&#xD;
+				Mat SE = new Mat(image, new Range(image.rows()/2+1, image.rows()), new Range(image.cols()/2+1, image.cols()));&#xD;
+				NodoQ nodoNW = new NodoQ(NW, nodoActual);&#xD;
+				NodoQ nodoNE = new NodoQ(NE, nodoActual);&#xD;
+				NodoQ nodoSW = new NodoQ(SW, nodoActual);&#xD;
+				NodoQ nodoSE = new NodoQ(SE, nodoActual);&#xD;
+				nodoActual.setHijoNW(nodoNW);&#xD;
+				nodoActual.setHijoNE(nodoNE);&#xD;
+				nodoActual.setHijoSW(nodoSW);&#xD;
+				nodoActual.setHijoSE(nodoSE);&#xD;
+				&#xD;
+				if(canDivideNE /*&amp;&amp; depth&lt;=this.depth*/) {generarArbol(NE, nodoNE/*, depth*/);}&#xD;
+				if(canDivideNW /*&amp;&amp; depth&lt;=this.depth*/) {generarArbol(NW, nodoNW/*, depth*/);}&#xD;
+				if(canDivideSW /*&amp;&amp; depth&lt;=this.depth*/) {generarArbol(SW, nodoSW/*, depth*/);}&#xD;
+				if(canDivideSE /*&amp;&amp; depth&lt;=this.depth*/) {generarArbol(SE, nodoSE/*, depth*/);}&#xD;
+			}&#xD;
+		&#xD;
+		/*&#xD;
+		&#xD;
+		if(columnas o filas igual a 1) PARAR&#xD;
+		else{&#xD;
+			Se guardan booleanos temporales de cada cuadrante.&#xD;
+			if(no se puede dividir en ningun cuadrante){&#xD;
+				Parada secundaria&#xD;
+			} else{&#xD;
+				&#xD;
+				Se generan las divisiones (Mat), y se ponen como hijas de la raiz actual.&#xD;
+				&#xD;
+				if(se puede dividir en el NW){	generarArbol(NW)}&#xD;
+				if(se puede dividir en el NE){	generarArbol(NE)}&#xD;
+				if(se puede dividir en el SE){	generarArbol(SE)}&#xD;
+				if(se puede dividir en el SW){	generarArbol(SW)}&#xD;
+				&#xD;
+			}&#xD;
+		}&#xD;
+		&#xD;
+		 */&#xD;
+		&#xD;
+	</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBsUIG3uEe6d2KCqV1voeQ" name="reconstruirImagen" specification="_T8VTAG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBsUIW3uEe6d2KCqV1voeQ" type="_T-RMsG3uEe6d2KCqV1voeQ" direction="return"/>
+          <language>java</language>
+          <body>if(this.raiz.hasHijos()) {&#xD;
+ 	   Mat imagenReconstruida = new Mat(this.imageSize, this.imageType);&#xD;
+        reconstruirImagen(this.getRaiz(), imagenReconstruida, 0, 0, (int)this.imageSize.width, (int)this.imageSize.height);&#xD;
+        return imagenReconstruida;&#xD;
+    } else {&#xD;
+ 	   return null;&#xD;
+ 	   // en este caso, sale una excepcion.&#xD;
+    }&#xD;
+ </body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBtiQG3uEe6d2KCqV1voeQ" name="reconstruirImagen" specification="_UAahwG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBtiQW3uEe6d2KCqV1voeQ" name="nodo" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBtiQm3uEe6d2KCqV1voeQ" name="imagenReconstruida" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UBtiQ23uEe6d2KCqV1voeQ" name="inicioX">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_UBtiRG3uEe6d2KCqV1voeQ" name="inicioY">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_UBtiRW3uEe6d2KCqV1voeQ" name="ancho">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_UBtiRm3uEe6d2KCqV1voeQ" name="alto">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <language>java</language>
+          <body>if (nodo == null) {&#xD;
+         return;&#xD;
+     }&#xD;
+&#xD;
+     int x = inicioX + ancho/2;&#xD;
+     int y = inicioY + alto/2;&#xD;
+&#xD;
+     &#xD;
+     reconstruirImagen(nodo.getHijoNE(), imagenReconstruida, x, inicioY, ancho/2, alto/2);&#xD;
+     reconstruirImagen(nodo.getHijoNW(), imagenReconstruida, inicioX, inicioY, ancho/2, alto/2);&#xD;
+     reconstruirImagen(nodo.getHijoSW(), imagenReconstruida, inicioX, y, ancho/2, alto/2);&#xD;
+     reconstruirImagen(nodo.getHijoSE(), imagenReconstruida, x, y, ancho/2, alto/2);&#xD;
+&#xD;
+     &#xD;
+     if (nodo.getLlave() != null) {&#xD;
+         int anchoSubimagen = nodo.getLlave().cols();&#xD;
+         int altoSubimagen = nodo.getLlave().rows();&#xD;
+         int xSubimagen = x - anchoSubimagen / 2;&#xD;
+         int ySubimagen = y - altoSubimagen / 2;&#xD;
+&#xD;
+         if (xSubimagen >= 0 &amp;&amp; ySubimagen >= 0 &amp;&amp; (xSubimagen + anchoSubimagen) &lt;= imagenReconstruida.cols()&#xD;
+                 &amp;&amp; (ySubimagen + altoSubimagen) &lt;= imagenReconstruida.rows()) {&#xD;
+             Mat subimagen = new Mat(imagenReconstruida, new Rect(xSubimagen, ySubimagen, anchoSubimagen, altoSubimagen));&#xD;
+             nodo.getLlave().copyTo(subimagen);&#xD;
+         }&#xD;
+     }&#xD;
+ </body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_UBzo4G3uEe6d2KCqV1voeQ" name="saveMatrixToTextFile" specification="_UAdlEG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UBzo4W3uEe6d2KCqV1voeQ" name="filePath">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_UBzo4m3uEe6d2KCqV1voeQ" name="matrix" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <language>java</language>
+          <body>try (FileWriter writer = new FileWriter(filePath)) {&#xD;
+         int rows = matrix.rows();&#xD;
+         int cols = matrix.cols();&#xD;
+&#xD;
+         // Iterar sobre cada píxel de la matriz&#xD;
+         for (int i = 0; i &lt; rows; i++) {&#xD;
+             for (int j = 0; j &lt; cols; j++) {&#xD;
+                 double[] pixel = matrix.get(i, j);&#xD;
+                 // Escribir los valores de los píxeles en el archivo&#xD;
+                 for (double value : pixel) {&#xD;
+                     writer.write(value + &quot;\t&quot;);&#xD;
+                 }&#xD;
+                 writer.write(&quot;\n&quot;);  // Nueva línea para cada fila de la matriz&#xD;
+             }&#xD;
+         }&#xD;
+     } catch (IOException e) {&#xD;
+         e.printStackTrace();&#xD;
+     }&#xD;
+ </body>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_T8LiAG3uEe6d2KCqV1voeQ" name="getRaiz" method="_UBm0kG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_T_acMG3uEe6d2KCqV1voeQ" type="_T7RjEG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T8VTAG3uEe6d2KCqV1voeQ" name="reconstruirImagen" method="_UBsUIG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UAZToG3uEe6d2KCqV1voeQ" type="_T-RMsG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_T_X_8G3uEe6d2KCqV1voeQ" name="QuadTree" method="_UBmNgG3uEe6d2KCqV1voeQ">
+          <eAnnotations xmi:id="_T_ZOEG3uEe6d2KCqV1voeQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+            <details xmi:id="_T_ZOEW3uEe6d2KCqV1voeQ" key="create"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_T_YnAG3uEe6d2KCqV1voeQ" name="r" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_T_ZOEm3uEe6d2KCqV1voeQ" type="_T8GCcG3uEe6d2KCqV1voeQ" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_UALRMG3uEe6d2KCqV1voeQ" name="canDivideNE" method="_UBnboG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UAL4QG3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UAMfUG3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_UANtcG3uEe6d2KCqV1voeQ" name="canDivideNW" method="_UBoCsG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UAOUgG3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UAO7kG3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_UAPioG3uEe6d2KCqV1voeQ" name="canDivideSW" method="_UBoCs23uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UAQJsG3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UARX0G3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_UATNAG3uEe6d2KCqV1voeQ" name="canDivideSE" method="_UBopwG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UATNAW3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UAUbIG3uEe6d2KCqV1voeQ" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_UAVpQG3uEe6d2KCqV1voeQ" name="generarArbol" method="_UBpQ0G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UAWQUG3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_UAXecG3uEe6d2KCqV1voeQ" name="generarArbol" method="_UBp34G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UAXecW3uEe6d2KCqV1voeQ" name="image" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UAYFgG3uEe6d2KCqV1voeQ" name="nodoActual" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_UAahwG3uEe6d2KCqV1voeQ" name="reconstruirImagen" visibility="private" method="_UBtiQG3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UAahwW3uEe6d2KCqV1voeQ" name="nodo" type="_T7RjEG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UAbI0G3uEe6d2KCqV1voeQ" name="imagenReconstruida" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+          <ownedParameter xmi:id="_UAbI0W3uEe6d2KCqV1voeQ" name="inicioX">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_UAbI0m3uEe6d2KCqV1voeQ" name="inicioY">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_UAbI023uEe6d2KCqV1voeQ" name="ancho">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_UAbv4G3uEe6d2KCqV1voeQ" name="alto">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_UAdlEG3uEe6d2KCqV1voeQ" name="saveMatrixToTextFile" isStatic="true" method="_UBzo4G3uEe6d2KCqV1voeQ">
+          <ownedParameter xmi:id="_UAdlEW3uEe6d2KCqV1voeQ" name="filePath">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_UAeMIG3uEe6d2KCqV1voeQ" name="matrix" type="_T-RMsG3uEe6d2KCqV1voeQ"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UCEuoG3uEe6d2KCqV1voeQ" name="" memberEnd="_UCEuoW3uEe6d2KCqV1voeQ _UAs1oG3uEe6d2KCqV1voeQ">
+        <ownedEnd xmi:id="_UCEuoW3uEe6d2KCqV1voeQ" name="" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCEuoG3uEe6d2KCqV1voeQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UCHK4G3uEe6d2KCqV1voeQ" name="" memberEnd="_UCHK4W3uEe6d2KCqV1voeQ _UAxuIG3uEe6d2KCqV1voeQ">
+        <ownedEnd xmi:id="_UCHK4W3uEe6d2KCqV1voeQ" name="" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCHK4G3uEe6d2KCqV1voeQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UCNRgG3uEe6d2KCqV1voeQ" name="" memberEnd="_UCNRgW3uEe6d2KCqV1voeQ _UA0KYG3uEe6d2KCqV1voeQ">
+        <ownedEnd xmi:id="_UCNRgW3uEe6d2KCqV1voeQ" name="" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCNRgG3uEe6d2KCqV1voeQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UCPtwG3uEe6d2KCqV1voeQ" name="" memberEnd="_UCPtwW3uEe6d2KCqV1voeQ _UA1_kG3uEe6d2KCqV1voeQ">
+        <ownedEnd xmi:id="_UCPtwW3uEe6d2KCqV1voeQ" name="" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCPtwG3uEe6d2KCqV1voeQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UCRi8G3uEe6d2KCqV1voeQ" name="" memberEnd="_UCRi8W3uEe6d2KCqV1voeQ _UA4b0G3uEe6d2KCqV1voeQ">
+        <ownedEnd xmi:id="_UCRi8W3uEe6d2KCqV1voeQ" name="" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCRi8G3uEe6d2KCqV1voeQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UCT_MG3uEe6d2KCqV1voeQ" name="" memberEnd="_UCT_MW3uEe6d2KCqV1voeQ _UA6RAG3uEe6d2KCqV1voeQ">
+        <ownedEnd xmi:id="_UCT_MW3uEe6d2KCqV1voeQ" name="" type="_T7RjEG3uEe6d2KCqV1voeQ" association="_UCT_MG3uEe6d2KCqV1voeQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UCXCgW3uEe6d2KCqV1voeQ" name="" memberEnd="_UCXCgm3uEe6d2KCqV1voeQ _UBAXoG3uEe6d2KCqV1voeQ">
+        <ownedEnd xmi:id="_UCXCgm3uEe6d2KCqV1voeQ" name="" type="_T8GCcG3uEe6d2KCqV1voeQ" association="_UCXCgW3uEe6d2KCqV1voeQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UCZewG3uEe6d2KCqV1voeQ" name="" memberEnd="_UCZewW3uEe6d2KCqV1voeQ _UBCM0G3uEe6d2KCqV1voeQ">
+        <ownedEnd xmi:id="_UCZewW3uEe6d2KCqV1voeQ" name="" type="_T8GCcG3uEe6d2KCqV1voeQ" association="_UCZewG3uEe6d2KCqV1voeQ"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_T6Ug0G3uEe6d2KCqV1voeQ" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_T6VH4G3uEe6d2KCqV1voeQ" name="io">
+        <packagedElement xmi:type="uml:Class" xmi:id="_T-6s8G3uEe6d2KCqV1voeQ" name="BufferedReader"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_T-9wQG3uEe6d2KCqV1voeQ" name="FileReader"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_T_CBsG3uEe6d2KCqV1voeQ" name="FileWriter"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_T_GTIG3uEe6d2KCqV1voeQ" name="IOException"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_TWlhoG3uEe6d2KCqV1voeQ">
+      <eAnnotations xmi:id="_TXIUMG3uEe6d2KCqV1voeQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_TXVvkG3uEe6d2KCqV1voeQ" base_Package="_Oz1vMG3uEe6d2KCqV1voeQ">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+  <UMLLabProfile:Reference xmi:id="_T-OwcG3uEe6d2KCqV1voeQ" base_Element="_T-J38G3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_T-TB4G3uEe6d2KCqV1voeQ" base_Element="_T-RMsG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_T-hrYG3uEe6d2KCqV1voeQ" base_Element="_T-To8G3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_T-lVwG3uEe6d2KCqV1voeQ" base_Element="_T-hrYW3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_T-9JMG3uEe6d2KCqV1voeQ" base_Element="_T-6s8G3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_T_BaoG3uEe6d2KCqV1voeQ" base_Element="_T-9wQG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_T_FFAG3uEe6d2KCqV1voeQ" base_Element="_T_CBsG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_T_JWcG3uEe6d2KCqV1voeQ" base_Element="_T_GTIG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UAKDEG3uEe6d2KCqV1voeQ" base_Element="_UAGYsG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UAxHEG3uEe6d2KCqV1voeQ" base_Element="_UAs1oG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UAzjUG3uEe6d2KCqV1voeQ" base_Element="_UAxuIG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UA1YgG3uEe6d2KCqV1voeQ" base_Element="_UA0KYG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UA3NsG3uEe6d2KCqV1voeQ" base_Element="_UA1_kG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UA5p8G3uEe6d2KCqV1voeQ" base_Element="_UA4b0G3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UA8GMG3uEe6d2KCqV1voeQ" base_Element="_UA6RAG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UA_wkG3uEe6d2KCqV1voeQ" base_Element="_UA_JgG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UBBlwG3uEe6d2KCqV1voeQ" base_Element="_UBAXoG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UBDa8G3uEe6d2KCqV1voeQ" base_Element="_UBCM0G3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_UBF3MG3uEe6d2KCqV1voeQ" base_Element="_UBECAG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UCGj0G3uEe6d2KCqV1voeQ" base_Element="_UCEuoG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UCMqcG3uEe6d2KCqV1voeQ" base_Element="_UCHK4G3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UCPGsG3uEe6d2KCqV1voeQ" base_Element="_UCNRgG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UCQ74G3uEe6d2KCqV1voeQ" base_Element="_UCPtwG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UCSxEG3uEe6d2KCqV1voeQ" base_Element="_UCRi8G3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UCXCgG3uEe6d2KCqV1voeQ" base_Element="_UCT_MG3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UCY3sG3uEe6d2KCqV1voeQ" base_Element="_UCXCgW3uEe6d2KCqV1voeQ"/>
+  <UMLLabProfile:Reference xmi:id="_UCbT8G3uEe6d2KCqV1voeQ" base_Element="_UCZewG3uEe6d2KCqV1voeQ"/>
+</xmi:XMI>
