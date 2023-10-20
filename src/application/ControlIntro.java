@@ -50,19 +50,22 @@ public class ControlIntro {
 
 	private List<Pane> paneList = new ArrayList<>();
 	private ActionEvent storedEvent; // Variable para almacenar el evento
-
+	private boolean botonClickeado = false;
+	
 	public void IntroToMain(ActionEvent event) throws IOException {
-		storedEvent = event; // Almacena el evento para su uso posterior
+		if(!botonClickeado) {
+			storedEvent = event; // Almacena el evento para su uso posterior
 
-		// Llena la lista 'paneList' con los paneles en orden
-		paneList.add(panel1);
-		paneList.add(panel2);
-		paneList.add(panel4);
-		paneList.add(panel3);
+			// Llena la lista 'paneList' con los paneles en orden
+			paneList.add(panel1);
+			paneList.add(panel2);
+			paneList.add(panel4);
+			paneList.add(panel3);
 
-		// Comienza la secuencia de desvanecimiento
-		fadeOutNextPane(0);
-
+			// Comienza la secuencia de desvanecimiento
+			fadeOutNextPane(0);
+			botonClickeado = true;
+		}
 	}
 
 	// este metodo es asi ya que cuando lo intente con ciclos no funcionaba

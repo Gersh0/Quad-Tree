@@ -288,7 +288,7 @@ public class QuadTree {
             }
         }
     }
-Point hola;
+	
 	// Método para guardar una matriz en un archivo de texto
 	public static void saveMatrixToTextFile(String filePath, Mat matrix) {
 		try (FileWriter writer = new FileWriter(filePath)) {

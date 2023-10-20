@@ -28,6 +28,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -54,9 +55,13 @@ public class ControlMain implements Initializable {
 	Label archivoLabelIMG2;
 	@FXML
 	ComboBox<String> profundidadComboBox;
+	@FXML
+	ImageView cargaImagen;
 
 	String[] valueProfundidad = { "Original", "Seccionada" };
-	String valorCB;
+	String valorCB = "sus";
+	String rutaImagenInsertada; // esta ruta se va a usar en el metodo generar QuadTree
+	String nombreImagenInsertada;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -68,11 +73,19 @@ public class ControlMain implements Initializable {
 		});
 	}
 
-	String rutaImagenInsertada; // esta ruta se va a usar en el metodo generar QuadTree
-	String nombreImagenInsertada;
+	public String obtenerRuta(String rutaLocal) {
+		String directorioUsuario = System.getProperty("user.dir");
+		return directorioUsuario + rutaLocal;
+	}
 
 	// Método para manejar la selección de archivos
 	public void seleccionarImagen(ActionEvent event) {
+		// INICIAR GIF
+		if (imgV2.getImage() != null) {
+
+		} else {
+			animacionImagenFadeIn(cargaImagen);
+		}
 
 		if (imgV1.getImage() != null) {
 			// Muestra una ventana emergente de advertencia
@@ -94,17 +107,19 @@ public class ControlMain implements Initializable {
 			if (selectedFile != null) {
 				Image image = new Image(selectedFile.toURI().toString()); // se instancia la imagen seleccionada
 				imgV1.setImage(image); // esa imagen se setea en el imageView
-				animacionImagenFadeIn(event, imgV1);// acciona la animacion
+				animacionImagenFadeIn(imgV1);// acciona la animacion
 				rutaImagenInsertada = selectedFile.toString();// aqui se guarda la ruta para usar posteriormente
 				archivoLabelIMG1.setText(selectedFile.getName());// actualiza el label con el nombre del archivo
 				nombreImagenInsertada = selectedFile.getName();
+			} else {
+				animacionImagenFadeOut(cargaImagen, false);
 			}
 		}
 	}
 
 	// seccion de animaciones experimentales para las imgV1 y imgV2
 
-	public void animacionImagenFadeIn(ActionEvent event, ImageView imgView) {
+	public void animacionImagenFadeIn(ImageView imgView) {
 		if (imgView.getImage() != null) {
 
 			// las fade transition requieren de la duracion y su objetivo , posteriormente
@@ -116,29 +131,32 @@ public class ControlMain implements Initializable {
 		}
 	}
 
-	public void animacionImagenFadeOut(ImageView imgView) {
+	public void animacionImagenFadeOut(ImageView imgView, boolean borrar) {
 		if (imgView.getImage() != null) {
 			FadeTransition fadeTransition = new FadeTransition(Duration.millis(500), imgView);
 			fadeTransition.setFromValue(1.0);
 			fadeTransition.setToValue(0);
 
-			// Establece un evento para limpiar la imagen después de la animación
-			fadeTransition.setOnFinished(event -> {
-				imgView.setImage(null);
-			});
+			if (borrar) {
+				// Establece un evento para limpiar la imagen después de la animación
+				fadeTransition.setOnFinished(event -> {
+					imgView.setImage(null);
+				});
+			}
 
 			fadeTransition.play();
 		}
 	}
 
 	public void limpiarImagen(ActionEvent event) {
-		animacionImagenFadeOut(imgV1);
-		animacionImagenFadeOut(imgV2);
+		animacionImagenFadeOut(imgV1, true);
+		animacionImagenFadeOut(imgV2, true);
 		archivoLabelIMG1.setText(null);
 		archivoLabelIMG2.setText(null);
 	}
 
 	public void generarQuadTree(ActionEvent event) {
+
 		// Verifica si la ImageView está vacía
 		if (imgV1.getImage() == null) {
 			// Muestra una ventana emergente de advertencia si la imagen de entrada es nula.
@@ -156,19 +174,29 @@ public class ControlMain implements Initializable {
 			alert.setContentText("Imagen ya generada");
 			alert.showAndWait();
 		} else {
-			if (valorCB == "Seccionada") {
+
+			switch (valorCB) {
+			case "Seccionada":
 				quadTreeSeccionado();
-				animacionImagenFadeIn(event, imgV2);
-			} else {
-
+				animacionImagenFadeIn(imgV2);
+				break;
+			case "Original":
 				quadTreeOriginal();
-				animacionImagenFadeIn(event, imgV2);
+				animacionImagenFadeIn(imgV2);
+				break;
+			default:
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Advertencia");
+				alert.setHeaderText(null);
+				alert.setContentText("Seleccione una opción de generación de imagen");
+				alert.showAndWait();
+				break;
 			}
-
 		}
 	}
 
 	public void quadTreeOriginal() {
+
 		// Crear un objeto QuadTree
 		QuadTree arbol = new QuadTree(new NodoQ());
 
@@ -191,8 +219,7 @@ public class ControlMain implements Initializable {
 		System.out.println(System.currentTimeMillis() - tiempoInicial);
 
 		// Definir la ruta donde se guardará la imagen reconstruida
-		String directorioUsuario = System.getProperty("user.dir");
-		String rutaImagen = directorioUsuario + "/Pruebas/" + "QuadtreeOf" + nombreImagenInsertada;
+		String rutaImagen = obtenerRuta("/Pruebas/" + "QuadtreeOf" + nombreImagenInsertada);
 
 		// Guardar la imagen reconstruida en la ruta especificada
 		Imgcodecs.imwrite(rutaImagen, imagenReconstruida);
@@ -218,6 +245,10 @@ public class ControlMain implements Initializable {
 		System.out.println(valorCB);
 		// Liberar recursos
 		imagenFinal = null;
+
+		// BORRAR GIF
+		animacionImagenFadeOut(cargaImagen, false);
+
 	}
 
 	public void quadTreeSeccionado() {
@@ -243,8 +274,7 @@ public class ControlMain implements Initializable {
 		System.out.println(System.currentTimeMillis() - tiempoInicial);
 
 		// Definir la ruta donde se guardará la imagen reconstruida
-		String directorioUsuario = System.getProperty("user.dir");
-		String rutaImagen = directorioUsuario + "/Pruebas/" + "Segmented" + "QuadtreeOf" + nombreImagenInsertada;
+		String rutaImagen = obtenerRuta("/Pruebas/" + "SegmentedQuadtreeOf" + nombreImagenInsertada);
 
 		// Guardar la imagen reconstruida en la ruta especificada
 		Imgcodecs.imwrite(rutaImagen, imagenReconstruida);
@@ -270,6 +300,9 @@ public class ControlMain implements Initializable {
 		System.out.println(valorCB);
 		// Liberar recursos
 		imagenFinal = null;
+
+		// BORRAR GIF
+		animacionImagenFadeOut(cargaImagen, false);
 	}
 
 	public void mostrarAyuda(ActionEvent event) {

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -29,6 +30,10 @@
          <children>
             <ImageView fx:id="imgV2" fitHeight="375.0" fitWidth="375.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="archivoLabelIMG2" maxHeight="20.0" maxWidth="375.0" minHeight="20.0" minWidth="375.0" prefHeight="20.0" prefWidth="375.0" textFill="WHITE" />
+            <ImageView fx:id="cargaImagen" fitHeight="150.0" fitWidth="200.0" layoutX="113.0" layoutY="123.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../imagenes/AmongLoading.gif" />
+               </image></ImageView>
          </children>
       </Pane>
    </children>

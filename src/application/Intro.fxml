@@ -45,7 +45,7 @@
          <children>
             <VBox fx:id="nombreVBox" alignment="CENTER" layoutX="130.0" layoutY="26.0" prefHeight="249.0" prefWidth="141.0" stylesheets="@Intro.css">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="German">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="German Rivera">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
