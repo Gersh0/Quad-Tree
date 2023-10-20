@@ -15,13 +15,13 @@
           <Button fx:id="ingresarArchivoButton" mnemonicParsing="false" onAction="#seleccionarImagen" text="Ingresar Archivo" />
             <Button fx:id="borrarButton" mnemonicParsing="false" onAction="#limpiarImagen" text="Borrar" />
             <Button fx:id="generarButton" mnemonicParsing="false" onAction="#generarQuadTree" text="Generar" />
-            <ComboBox fx:id="profundidadComboBox" prefWidth="150.0" promptText="Profundidad" />
+            <ComboBox fx:id="profundidadComboBox" prefWidth="150.0" promptText="Tipo de Generación" />
             <Button fx:id="helpButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#mostrarAyuda" text="?" />
         </items>
       </ToolBar>
       <Pane fx:id="contenedorPane" layoutX="14.0" layoutY="113.0" maxHeight="395.0" maxWidth="375.0" minHeight="400.0" minWidth="375.0" prefHeight="395.0" prefWidth="375.0 ">
          <children>
-            <ImageView fx:id="imgV1" fitHeight="375.0" fitWidth="375.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgV1" fitHeight="375.0" fitWidth="375.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="archivoLabelIMG1" maxHeight="20.0" maxWidth="375.0" minHeight="20.0" minWidth="375.0" prefHeight="20.0" prefWidth="375.0" textFill="WHITE" />
          </children>
       </Pane>

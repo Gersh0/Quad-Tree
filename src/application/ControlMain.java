@@ -13,6 +13,7 @@ import org.opencv.imgproc.Imgproc;
 
 import code.NodoQ;
 import code.QuadTree;
+import code.QuadTreeSegmented;
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.embed.swing.SwingFXUtils;
@@ -54,11 +55,17 @@ public class ControlMain implements Initializable {
 	@FXML
 	ComboBox<String> profundidadComboBox;
 
-	String[] valueProfundidad = { "1", "2", "3", "4", "5", "6", "7", "8", "Original" };
+	String[] valueProfundidad = { "Original", "Seccionada" };
+	String valorCB;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		profundidadComboBox.getItems().addAll(valueProfundidad);
+		profundidadComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue != null) {
+				valorCB = newValue;
+			}
+		});
 	}
 
 	String rutaImagenInsertada; // esta ruta se va a usar en el metodo generar QuadTree
@@ -149,64 +156,122 @@ public class ControlMain implements Initializable {
 			alert.setContentText("Imagen ya generada");
 			alert.showAndWait();
 		} else {
-			// Cargar la imagen en imgAux y convertirla a BufferedImage
+			if (valorCB == "Seccionada") {
+				quadTreeSeccionado();
+				animacionImagenFadeIn(event, imgV2);
+			} else {
 
-			// Image imgAux = imgV1.getImage();
-			// BufferedImage bufferedAuxImg = convertirImagenJavaFXABufferedImage(imgAux);
+				quadTreeOriginal();
+				animacionImagenFadeIn(event, imgV2);
+			}
 
-			// Crear un objeto QuadTree
-			QuadTree arbol = new QuadTree(new NodoQ());
-
-			// Cargar la imagen desde la ruta proporcionada en rutaImagenInsertada
-			System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-			Mat image = Imgcodecs.imread(rutaImagenInsertada);
-
-			// Convertir la imagen a escala de grises
-			Mat grayImage = new Mat();
-			Imgproc.cvtColor(image, grayImage, Imgproc.COLOR_BGR2GRAY);
-
-			double tiempoInicial = System.currentTimeMillis();
-
-			// Generar el QuadTree a partir de la imagen en escala de grises
-			arbol.generarArbol(grayImage);
-
-			// Reconstruir la imagen a partir del QuadTree
-			Mat imagenReconstruida = arbol.reconstruirImagen();
-
-			System.out.println(System.currentTimeMillis() - tiempoInicial);
-
-			// Definir la ruta donde se guardará la imagen reconstruida
-			String directorioUsuario = System.getProperty("user.dir");
-			String rutaImagen = directorioUsuario + "/Pruebas/" + "QuadtreeOf" + nombreImagenInsertada;
-
-			// Guardar la imagen reconstruida en la ruta especificada
-			Imgcodecs.imwrite(rutaImagen, imagenReconstruida);
-
-			// Crear un objeto Image a partir de la imagen guardada
-			Image imagenFinal = new Image("file:" + rutaImagen);
-
-			// Mostrar la imagen reconstruida en la segunda ImageView
-			imgV2.setImage(imagenFinal);
-
-			// generar texto del quadTree
-			// String rutaTexto = directorioUsuario + "/Textos/" + "QuadtreeOf" +
-			// nombreImagenInsertada + ".txt";
-			// QuadTree.saveMatrixToTextFile(rutaTexto, imagenReconstruida);
-
-			animacionImagenFadeIn(event, imgV2);
-
-			System.out.println(nombreImagenInsertada + " Generado exitoso");
-
-			// Actualizar el texto del label en la interfaz
-			archivoLabelIMG2.setText("QuadtreeOf" + nombreImagenInsertada);
-
-			// Liberar recursos
-			imagenFinal = null;
 		}
 	}
 
-	
-	
+	public void quadTreeOriginal() {
+		// Crear un objeto QuadTree
+		QuadTree arbol = new QuadTree(new NodoQ());
+
+		// Cargar la imagen desde la ruta proporcionada en rutaImagenInsertada
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		Mat image = Imgcodecs.imread(rutaImagenInsertada);
+
+		// Convertir la imagen a escala de grises
+		Mat grayImage = new Mat();
+		Imgproc.cvtColor(image, grayImage, Imgproc.COLOR_BGR2GRAY);
+
+		double tiempoInicial = System.currentTimeMillis();
+
+		// Generar el QuadTree a partir de la imagen en escala de grises
+		arbol.generarArbol(grayImage);
+
+		// Reconstruir la imagen a partir del QuadTree
+		Mat imagenReconstruida = arbol.reconstruirImagen();
+
+		System.out.println(System.currentTimeMillis() - tiempoInicial);
+
+		// Definir la ruta donde se guardará la imagen reconstruida
+		String directorioUsuario = System.getProperty("user.dir");
+		String rutaImagen = directorioUsuario + "/Pruebas/" + "QuadtreeOf" + nombreImagenInsertada;
+
+		// Guardar la imagen reconstruida en la ruta especificada
+		Imgcodecs.imwrite(rutaImagen, imagenReconstruida);
+
+		// Crear un objeto Image a partir de la imagen guardada
+		Image imagenFinal = new Image("file:" + rutaImagen);
+
+		// Mostrar la imagen reconstruida en la segunda ImageView
+		imgV2.setImage(imagenFinal);
+
+		// generar texto del quadTree
+		// String rutaTexto = directorioUsuario + "/Textos/" + "QuadtreeOf" +
+		// nombreImagenInsertada + ".txt";
+		// QuadTree.saveMatrixToTextFile(rutaTexto, imagenReconstruida);
+
+		// aqui iba una animacion
+
+		System.out.println(nombreImagenInsertada + " Generado exitoso");
+
+		// Actualizar el texto del label en la interfaz
+		archivoLabelIMG2.setText("QuadtreeOf" + nombreImagenInsertada);
+
+		System.out.println(valorCB);
+		// Liberar recursos
+		imagenFinal = null;
+	}
+
+	public void quadTreeSeccionado() {
+		// Crear un objeto QuadTree
+		QuadTreeSegmented arbol = new QuadTreeSegmented(new NodoQ());
+
+		// Cargar la imagen desde la ruta proporcionada en rutaImagenInsertada
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		Mat image = Imgcodecs.imread(rutaImagenInsertada);
+
+		// Convertir la imagen a escala de grises
+		Mat grayImage = new Mat();
+		Imgproc.cvtColor(image, grayImage, Imgproc.COLOR_BGR2GRAY);
+
+		double tiempoInicial = System.currentTimeMillis();
+
+		// Generar el QuadTree a partir de la imagen en escala de grises
+		arbol.generarArbol(grayImage);
+
+		// Reconstruir la imagen a partir del QuadTree
+		Mat imagenReconstruida = arbol.reconstruirImagen();
+
+		System.out.println(System.currentTimeMillis() - tiempoInicial);
+
+		// Definir la ruta donde se guardará la imagen reconstruida
+		String directorioUsuario = System.getProperty("user.dir");
+		String rutaImagen = directorioUsuario + "/Pruebas/" + "Segmented" + "QuadtreeOf" + nombreImagenInsertada;
+
+		// Guardar la imagen reconstruida en la ruta especificada
+		Imgcodecs.imwrite(rutaImagen, imagenReconstruida);
+
+		// Crear un objeto Image a partir de la imagen guardada
+		Image imagenFinal = new Image("file:" + rutaImagen);
+
+		// Mostrar la imagen reconstruida en la segunda ImageView
+		imgV2.setImage(imagenFinal);
+
+		// generar texto del quadTree
+		// String rutaTexto = directorioUsuario + "/Textos/" + "QuadtreeOf" +
+		// nombreImagenInsertada + ".txt";
+		// QuadTree.saveMatrixToTextFile(rutaTexto, imagenReconstruida);
+
+		// aqui iba una animacion
+
+		System.out.println(nombreImagenInsertada + " Generado exitoso");
+
+		// Actualizar el texto del label en la interfaz
+		archivoLabelIMG2.setText("SegmentedQuadtreeOf" + nombreImagenInsertada);
+
+		System.out.println(valorCB);
+		// Liberar recursos
+		imagenFinal = null;
+	}
+
 	public void mostrarAyuda(ActionEvent event) {
 		Alert info = new Alert(AlertType.INFORMATION);
 		info.setTitle("Instrucciones");

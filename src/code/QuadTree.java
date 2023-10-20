@@ -23,6 +23,54 @@ public class QuadTree {
 	public NodoQ getRaiz() {
 		return raiz;
 	}
+	
+	/* Se puede hacer así y también con Case.
+	 public boolean canDivide(Mat image, String quadrant) {
+	    if (image.cols() <= 1 || image.rows() <= 1) {
+	        return false;
+	    }
+	    
+	    boolean changeFound = false;
+	    int tempRowStart = 0;
+	    int tempRowEnd = (image.rows() / 2);
+	    int tempColStart = 0;
+	    int tempColEnd = (image.cols() / 2);
+
+	    if (quadrant.equals("NE")) {
+	        tempRowStart = 0;
+	        tempRowEnd = (image.rows() / 2);
+	        tempColStart = image.cols() / 2;
+	        tempColEnd = image.cols();
+	    } else if (quadrant.equals("NW")) {
+	        tempRowStart = 0;
+	        tempRowEnd = (image.rows() / 2);
+	        tempColStart = 0;
+	        tempColEnd = (image.cols() / 2);
+	    } else if (quadrant.equals("SW")) {
+	        tempRowStart = image.rows() / 2;
+	        tempRowEnd = image.rows();
+	        tempColStart = 0;
+	        tempColEnd = (image.cols() / 2);
+	    } else if (quadrant.equals("SE")) {
+	        tempRowStart = image.rows() / 2;
+	        tempRowEnd = image.rows();
+	        tempColStart = image.cols() / 2;
+	        tempColEnd = image.cols();
+	    }
+
+	    double[] tempColor = image.get(tempRowStart, tempColStart);
+	    
+	    for (int tempRow = tempRowStart; tempRow < tempRowEnd && !changeFound; tempRow++) {
+	        for (int tempCol = tempColStart; tempCol < tempColEnd && !changeFound; tempCol++) {
+	            double[] pixel = image.get(tempRow, tempCol);
+	            if (pixel != null && tempColor[0] != pixel[0]) {
+	                changeFound = true;
+	            }
+	        }
+	    }
+	    
+	    return changeFound;
+	}*/
 
 	public boolean canDivideNE(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
@@ -129,7 +177,12 @@ public class QuadTree {
 		boolean canDivideNW = canDivideNW(image);
 		boolean canDivideSW = canDivideSW(image);
 		boolean canDivideSE = canDivideSE(image);
-		if (!canDivideNE && !canDivideNW && !canDivideSE && !canDivideSW) {
+		
+		if (!canDivideNE && !canDivideNW && !canDivideSE && !canDivideSW) {//&(Llegué al fondo || #GUI)
+			/*
+			 * 1. ROI.
+			 * 2. Average.
+			 */
 			return;
 		} else {
 			Mat NW = new Mat(image, new Range(0, image.rows() / 2), new Range(0, image.cols() / 2));
@@ -235,7 +288,7 @@ public class QuadTree {
             }
         }
     }
-
+Point hola;
 	// Método para guardar una matriz en un archivo de texto
 	public static void saveMatrixToTextFile(String filePath, Mat matrix) {
 		try (FileWriter writer = new FileWriter(filePath)) {
