@@ -82,7 +82,7 @@ public class QuadTree {
 		int tempRow = 0;
 		double[] tempColor = image.get(0, 0);
 		while (++tempRow <= (image.rows() / 2) && !changeFound) {
-			int tempCol = image.cols() / 2;
+			int tempCol = image.cols() / 2 +1;
 			while (++tempCol <= image.cols() && !changeFound && image.get(tempRow, tempCol) != null) {
 				if (tempColor[0] != image.get(tempRow, tempCol)[0])
 					changeFound = true;
@@ -115,7 +115,7 @@ public class QuadTree {
 			return false;
 		}
 		boolean changeFound = false;
-		int tempRow = image.rows() / 2;
+		int tempRow = image.rows() / 2 +1;
 		double[] tempColor = image.get(0, 0);
 		while (++tempRow <= image.rows() && !changeFound) {
 			int tempCol = 0;
@@ -133,10 +133,10 @@ public class QuadTree {
 			return false;
 		}
 		boolean changeFound = false;
-		int tempRow = image.rows() / 2;
+		int tempRow = image.rows() / 2 +1;
 		double[] tempColor = image.get(0, 0);
 		while (++tempRow <= image.rows() && !changeFound) {
-			int tempCol = image.cols() / 2;
+			int tempCol = image.cols() / 2+1;
 			while (++tempCol <= image.cols() && !changeFound && image.get(tempRow, tempCol) != null) {
 				if (tempColor[0] != image.get(tempRow, tempCol)[0])
 					changeFound = true;
@@ -320,7 +320,7 @@ public class QuadTree {
             }
         }
     }
-	
+	/*
 	// intento de Método para guardar una matriz en un archivo de texto
 	public static void saveMatrixToTextFile(String filePath, Mat matrix) {
 		try (FileWriter writer = new FileWriter(filePath)) {
@@ -342,5 +342,6 @@ public class QuadTree {
 			e.printStackTrace();
 		}
 	}
+	*/
 
 }
