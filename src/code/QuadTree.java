@@ -15,9 +15,8 @@ public class QuadTree {
 	int filasNuevas;
 	int columnasNuevas;
 
-	public QuadTree(NodoQ r/* , int depth */) {// FALTAAAAAAAA
+	public QuadTree(NodoQ r) {// FALTAAAAAAAA
 		this.raiz = r;
-		/* this.depth = depth; */
 	}
 
 	public NodoQ getRaiz() {
@@ -72,6 +71,9 @@ public class QuadTree {
 	    return changeFound;
 	}*/
 
+	
+	//se itera por la matriz, si se encuentra un pixel distinto al que esta en el punto 0,0 , devuelve true.
+	// Itera en el sector Noreste
 	public boolean canDivideNE(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
 			return false;
@@ -88,7 +90,8 @@ public class QuadTree {
 		}
 		return changeFound;
 	}
-
+	//se itera por la matriz, si se encuentra un pixel distinto al que esta en el punto 0,0 , devuelve true.
+		// Itera en el sector Noroeste
 	public boolean canDivideNW(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
 			return false;
@@ -105,7 +108,8 @@ public class QuadTree {
 		}
 		return changeFound;
 	}
-
+	//se itera por la matriz, si se encuentra un pixel distinto al que esta en el punto 0,0 , devuelve true.
+		// Itera en el sector Suroeste
 	public boolean canDivideSW(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
 			return false;
@@ -122,7 +126,8 @@ public class QuadTree {
 		}
 		return changeFound;
 	}
-
+	//se itera por la matriz, si se encuentra un pixel distinto al que esta en el punto 0,0 , devuelve true.
+		// Itera en el sector Sureste
 	public boolean canDivideSE(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
 			return false;
@@ -143,12 +148,13 @@ public class QuadTree {
 	public void generarArbol(Mat image) {
 		this.imageType = image.type();
 		this.imageSize = image.size();
+		
 		// Se comprueba si la imagen ya está en ancho o alto de 2^n
-		// para eso, si la cantidad total de pixeles es 4^n, el ancho y alto seran
-		// tambien 2^n
 		double log2Columnas = (Math.log10(image.width()) / Math.log10(2));
 		double log2Filas = (Math.log10(image.height()) / Math.log10(2));
 
+		// si el log es un numero entero, sera 2^n, si no, se aproxima al numero 2^n mas cercano hacia arriba
+		// se hace con ambas las filas y las columnas
 		if (log2Columnas % 1 != 0) {
 			columnasNuevas = (int) Math.pow(2, (int) log2Columnas + 1);
 		} else {
@@ -160,23 +166,34 @@ public class QuadTree {
 			filasNuevas = image.rows();
 		}
 
+		// si son iguales a 0, significara que ya estaban en orden 2^n, por lo que no hay que extender la imagen
 		if (columnasNuevas != 0 || filasNuevas != 0) {
+			//se pega la matriz original a una con tamaño orden 2^n
 			this.wasExtended = true;
 			Mat temp = new Mat(filasNuevas, columnasNuevas, image.type());
+			//temp es la matriz expandida, vacia
 			Mat subMat = new Mat(temp, new Rect(0, 0, image.cols(), image.rows()));
+			// se crea una submatriz de temp, para poder pegar la original, de manera que los pixeles 0,0 de 
+			// ambas imagenes esten en la misma posicion
 			image.copyTo(subMat);
+			// se copia una en la otra
 			generarArbol(temp, this.raiz);
+			//se usa el metodo del arbol en la imagen expandida, que ahora tiene la original
 		} else {
 			generarArbol(image, this.raiz);
 		}
 	}
 
 	public void generarArbol(Mat image, NodoQ nodoActual) {
-
 		boolean canDivideNE = canDivideNE(image);
 		boolean canDivideNW = canDivideNW(image);
 		boolean canDivideSW = canDivideSW(image);
 		boolean canDivideSE = canDivideSE(image);
+		// se comprueban las cuatro regiones por separado, antes de dividir. Esto ayuda a optimizar el arbol, ya que
+		// si se encuentra un pixel diferente en algun cuadrante, igual se dividira, pero si el cuadrante no tiene cambios,
+		// y habia otro cuadrante por el que hay que dividir, el cuadrante que esta perfecto se guarda directamente, sin tener
+		// que volver a hacer la comprobación.
+		
 		
 		if (!canDivideNE && !canDivideNW && !canDivideSE && !canDivideSW) {//&(Llegué al fondo || #GUI)
 			/*
@@ -185,11 +202,14 @@ public class QuadTree {
 			 */
 			return;
 		} else {
+			//Se crean submatrices de la original, dividiendola por cuadrantes.
 			Mat NW = new Mat(image, new Range(0, image.rows() / 2), new Range(0, image.cols() / 2));
 			Mat NE = new Mat(image, new Range(0, image.rows() / 2), new Range(image.cols() / 2, image.cols()));
 			Mat SW = new Mat(image, new Range(image.rows() / 2, image.rows()), new Range(0, image.cols() / 2));
-			Mat SE = new Mat(image, new Range(image.rows() / 2, image.rows()),
-					new Range(image.cols() / 2, image.cols()));
+			Mat SE = new Mat(image, new Range(image.rows() / 2, image.rows()), new Range(image.cols() / 2, image.cols()));
+			
+			// se crean nodos nuevos, y se les guardan las submatrices, ademas de guardar el nodo actual como padre.
+			// luego se le ponen los nodos como hijos al actual.
 			NodoQ nodoNW = new NodoQ(NW, nodoActual);
 			NodoQ nodoNE = new NodoQ(NE, nodoActual);
 			NodoQ nodoSW = new NodoQ(SW, nodoActual);
@@ -198,7 +218,11 @@ public class QuadTree {
 			nodoActual.setHijoNE(nodoNE);
 			nodoActual.setHijoSW(nodoSW);
 			nodoActual.setHijoSE(nodoSE);
+			// IMPORTANTE: los 4 metodos de sethijo, borraran la llave del padre, si la tiene. Esto es porque solo se quiere
+			// guardar informacion en las hojas. Como tiene hijos sera nodo interno, asi que hay que eliminar la matriz
+			// que tiene guardada para ahorrar memoria, ya que nunca se va a utilizar.
 
+			// esto es para que si el cuadrante en especifico no tiene ningun cambio, no se sigue por ahi, guardandolo.
 			if (canDivideNE) {
 				generarArbol(NE, nodoNE);
 			}
@@ -238,6 +262,12 @@ public class QuadTree {
 
 	public Mat reconstruirImagen() {
 	       if(this.raiz.hasHijos()) {
+	    	   
+	    	   // en ambos de los casos abajo, se crea una imagen temporal del tamaño de la imagen a reconstruir, 
+	    	   // si es una imagen expandida, se cuenta el tamaño extra.
+	    	   
+	    	   // Luego, se reconstruye. Si la imagen es expandida, antes de devolver la imagen, saca una submatriz del tamaño de la
+	    	   // imagen original, desde el pizel 0,0 , a el final de la imagen
 	    	   if(this.wasExtended) {
 	    		   Mat imagenExtendidaReconstruida = new Mat(new Size(columnasNuevas,filasNuevas), this.imageType);
 	               reconstruirImagen(this.getRaiz(), imagenExtendidaReconstruida, 0, 0, columnasNuevas, filasNuevas);
@@ -268,7 +298,9 @@ public class QuadTree {
         int x = inicioX + ancho/2;
         int y = inicioY + alto/2;
 
+        // se reconstruye por cuadrantes.
         
+        // los puntos de inicio, y las coordenadas cambian segun el cuadrante.
         reconstruirImagen(nodo.getHijoNE(), imagenReconstruida, x, inicioY, ancho/2, alto/2);
         reconstruirImagen(nodo.getHijoNW(), imagenReconstruida, inicioX, inicioY, ancho/2, alto/2);
         reconstruirImagen(nodo.getHijoSW(), imagenReconstruida, inicioX, y, ancho/2, alto/2);
@@ -289,7 +321,7 @@ public class QuadTree {
         }
     }
 	
-	// Método para guardar una matriz en un archivo de texto
+	// intento de Método para guardar una matriz en un archivo de texto
 	public static void saveMatrixToTextFile(String filePath, Mat matrix) {
 		try (FileWriter writer = new FileWriter(filePath)) {
 			int rows = matrix.rows();
