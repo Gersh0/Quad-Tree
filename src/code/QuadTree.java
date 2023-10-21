@@ -7,7 +7,6 @@ import org.opencv.core.*;
 
 public class QuadTree {
 
-	protected int depth;
 	protected NodoQ raiz;
 	protected Size imageSize;
 	protected int imageType;
@@ -15,7 +14,7 @@ public class QuadTree {
 	int filasNuevas;
 	int columnasNuevas;
 
-	public QuadTree(NodoQ r) {// FALTAAAAAAAA
+	public QuadTree(NodoQ r) {
 		this.raiz = r;
 	}
 
@@ -197,7 +196,7 @@ public class QuadTree {
 		
 		if (!canDivideNE && !canDivideNW && !canDivideSE && !canDivideSW) {//&(Llegué al fondo || #GUI)
 
-			if( (image.get(0,0) != image.get(image.width()/2+1,0)) || (image.get(image.width()/2+1,0) != image.get(image.width()/2+1,image.height/2+1)) ||
+			if( (image.get(0,0) != image.get(image.width()/2+1,0)) || (image.get(image.width()/2+1,0) != image.get(image.width()/2+1,image.height()/2+1)) ||
 			(image.get(image.width()/2+1,image.height()/2+1) != image.get(0, image.height()/2+1)) || (image.get(0, image.height()/2+1) != image.get(0,0))){
 
 				// como ya se comprobo que todos los cuadrantes son de un color cada uno, hay que confirmar si tienen o no el mismo color entre ellos.
@@ -216,10 +215,6 @@ public class QuadTree {
 				nodoActual.setHijoSE(nodoSE);
 			}
 			
-			/*
-			 * 1. ROI.
-			 * 2. Average.
-			 */
 			return;
 		} else {
 			//Se crean submatrices de la original, dividiendola por cuadrantes.
@@ -307,7 +302,6 @@ public class QuadTree {
 	           */
 	       } else {
 	    	   return null;
-	    	   // en este caso, sale una excepcion.
 	       }
 	    }
 
