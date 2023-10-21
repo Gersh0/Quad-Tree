@@ -1,8 +1,5 @@
 package code;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 import org.opencv.core.*;
 
 public class QuadTree {
@@ -23,7 +20,7 @@ public class QuadTree {
 	}
 	
 	/* Se puede hacer así y también con Case.
-	 public boolean canDivide(Mat image, String quadrant) {
+	 private boolean canDivide(Mat image, String quadrant) {
 	    if (image.cols() <= 1 || image.rows() <= 1) {
 	        return false;
 	    }
@@ -73,7 +70,7 @@ public class QuadTree {
 	
 	//se itera por la matriz, si se encuentra un pixel distinto al que esta en el punto 0,0 , devuelve true.
 	// Itera en el sector Noreste
-	public boolean canDivideNE(Mat image) {
+	private boolean canDivideNE(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
 			return false;
 		}
@@ -91,7 +88,7 @@ public class QuadTree {
 	}
 	//se itera por la matriz, si se encuentra un pixel distinto al que esta en el punto 0,0 , devuelve true.
 		// Itera en el sector Noroeste
-	public boolean canDivideNW(Mat image) {
+	private boolean canDivideNW(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
 			return false;
 		}
@@ -109,7 +106,7 @@ public class QuadTree {
 	}
 	//se itera por la matriz, si se encuentra un pixel distinto al que esta en el punto 0,0 , devuelve true.
 		// Itera en el sector Suroeste
-	public boolean canDivideSW(Mat image) {
+	private boolean canDivideSW(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
 			return false;
 		}
@@ -127,7 +124,7 @@ public class QuadTree {
 	}
 	//se itera por la matriz, si se encuentra un pixel distinto al que esta en el punto 0,0 , devuelve true.
 		// Itera en el sector Sureste
-	public boolean canDivideSE(Mat image) {
+	private boolean canDivideSE(Mat image) {
 		if (image.cols() <= 1 || image.rows() <= 1) {
 			return false;
 		}
@@ -183,7 +180,7 @@ public class QuadTree {
 		}
 	}
 
-	public void generarArbol(Mat image, NodoQ nodoActual) {
+	private void generarArbol(Mat image, NodoQ nodoActual) {
 		boolean canDivideNE = canDivideNE(image);
 		boolean canDivideNW = canDivideNW(image);
 		boolean canDivideSW = canDivideSW(image);
