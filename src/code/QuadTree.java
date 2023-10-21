@@ -196,6 +196,26 @@ public class QuadTree {
 		
 		
 		if (!canDivideNE && !canDivideNW && !canDivideSE && !canDivideSW) {//&(Llegué al fondo || #GUI)
+
+			if( (image.get(0,0) != image.get(image.width()/2+1,0)) || (image.get(image.width()/2+1,0) != image.get(image.width()/2+1,image.height/2+1)) ||
+			(image.get(image.width()/2+1,image.height()/2+1) != image.get(0, image.height()/2+1)) || (image.get(0, image.height()/2+1) != image.get(0,0))){
+
+				// como ya se comprobo que todos los cuadrantes son de un color cada uno, hay que confirmar si tienen o no el mismo color entre ellos.
+				// si hay alguna con color distinto a las otras, se dividira.
+				Mat NW = new Mat(image, new Range(0, image.rows() / 2), new Range(0, image.cols() / 2));
+				Mat NE = new Mat(image, new Range(0, image.rows() / 2), new Range(image.cols() / 2, image.cols()));
+				Mat SW = new Mat(image, new Range(image.rows() / 2, image.rows()), new Range(0, image.cols() / 2));
+				Mat SE = new Mat(image, new Range(image.rows() / 2, image.rows()), new Range(image.cols() / 2, image.cols()));
+				NodoQ nodoNW = new NodoQ(NW, nodoActual);
+				NodoQ nodoNE = new NodoQ(NE, nodoActual);
+				NodoQ nodoSW = new NodoQ(SW, nodoActual);
+				NodoQ nodoSE = new NodoQ(SE, nodoActual);
+				nodoActual.setHijoNW(nodoNW);
+				nodoActual.setHijoNE(nodoNE);
+				nodoActual.setHijoSW(nodoSW);
+				nodoActual.setHijoSE(nodoSE);
+			}
+			
 			/*
 			 * 1. ROI.
 			 * 2. Average.
@@ -237,6 +257,7 @@ public class QuadTree {
 			}
 		}
 
+		
 /*
 		
 		if(columnas o filas igual a 1) PARAR
